@@ -1,1 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alabama Turtle Conservation: Species Index</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Use Inter font for a clean, modern look -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f7f5; /* Light Stone/Earthy Background */
+            color: #333333; /* Dark text color */
+        }
+        /* Base styles for the theme components */
+        .theme-header { transition: background-color 0.4s ease, box-shadow 0.4s ease; }
+        .theme-accent-bg { transition: background-color 0.4s ease; }
+        .theme-accent-text { transition: color 0.4s ease; }
+        .theme-border { transition: border-color 0.4s ease; }
+        .active-tab {
+            color: white !important; /* Force white text on bright buttons for legibility */
+            font-weight: 700;
+        }
+        .tab {
+            transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+        }
+        /* Custom styling for the tracking sketch placeholder */
+        .track-sketch {
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 1rem;
+            color: #444; 
+            background-color: #e5e5e0; /* Light gray/sandstone background */
+            border: 2px dashed #94a3b8; /* Slate dashed border */
+        }
+    </style>
+    <script>
+        // Updated themeMap for a Natural & Bold look (Earthy Tones)
+        const themeMap = {
+            "flattened-musk-turtle": { header: "bg-emerald-700", accentBg: "bg-teal-500", accentText: "text-teal-700", accentBorder: "border-teal-400", lightBg: "bg-teal-50", lightBorder: "border-teal-200", statusBg: "bg-amber-400", cardShadow: "shadow-teal-300" },
+            "kemps-ridley-sea-turtle": { header: "bg-emerald-700", accentBg: "bg-sky-500", accentText: "text-sky-700", accentBorder: "border-sky-400", lightBg: "bg-sky-50", lightBorder: "border-sky-200", statusBg: "bg-red-500", cardShadow: "shadow-sky-300" },
+            "loggerhead-sea-turtle": { header: "bg-emerald-700", accentBg: "bg-orange-500", accentText: "text-orange-700", accentBorder: "border-orange-400", lightBg: "bg-orange-50", lightBorder: "border-orange-200", statusBg: "bg-yellow-400", cardShadow: "shadow-orange-300" },
+            "gopher-tortoise": { header: "bg-emerald-700", accentBg: "bg-lime-600", accentText: "text-lime-700", accentBorder: "border-lime-400", lightBg: "bg-lime-50", lightBorder: "border-lime-200", statusBg: "bg-green-600", cardShadow: "shadow-lime-300" },
+            "alabama-red-bellied-turtle": { header: "bg-emerald-700", accentBg: "bg-rose-500", accentText: "text-rose-700", accentBorder: "border-rose-400", lightBg: "bg-rose-50", lightBorder: "border-rose-200", statusBg: "bg-red-600", cardShadow: "shadow-rose-300" }
+        };
+
+        const allSpeciesData = {
+            "flattened-musk-turtle": {
+                speciesName: "Flattened Musk Turtle",
+                scientificName: "Sternotherus depressus",
+                status: "Threatened (Federally Protected)",
+                generalImage: "https://placehold.co/600x400/0d9488/ffffff?text=Flattened+Musk+Turtle",
+                description: "A **hidden gem** of the Black Warrior River, this tiny, flat-shelled turtle is a true Alabama endemic. Its unique, depressed shell is perfectly designed to squeeze into the tight, rocky crevices and under submerged boulders of its fast-flowing, clear water home. Their survival is a **barometer for the health** of Alabama's most vital waterways, especially against the threat of pollution.",
+                habitat: {
+                    title: "Clear, Flowing Streams and Rocky Riverbeds",
+                    details: "Optimal habitat includes **clear, free-flowing streams or small rivers** (like the Sipsey Fork) with abundant submerged boulders and overlapping flat rocks for refuge. They require pristine, clean water with low silt levels to prevent the filling of their essential rock crevices.",
+                    location: "Strictly confined to the **upper Black Warrior River Basin** above the Bankhead Dam in north-central Alabama (Blount, Cullman, Walker, and Winston counties). This extremely restricted range makes them acutely vulnerable."
+                },
+                movement: {
+                    locomotion: "Primarily a **nocturnal bottom-dweller**, spending most time scurrying along stream bottoms or hiding deep within rock shelters. Only females leave the water briefly for nesting.",
+                    footprintDescription: "Footprints are almost never seen. If a nesting female crosses a soft, sandy bank, she would leave tiny, short toe/claw marks (total track width < 3 inches) and a faint drag mark from their small, flat shell. **The key is their small size**.",
+                    wildtrackPotential: "Limited, but useful for finding **nesting female tracks** on sandy banks during the short breeding season. AI analysis of these small tracks could help identify and protect critical, undisturbed nesting sites in the riparian zone, which are often overlooked."
+                },
+                conservation: {
+                    mainThreats: ["**Siltation (Sedimentation):** This is the single greatest threat; it fills essential rocky crevices and smothers their invertebrate food sources.", "Habitat loss from construction of dams (impoundments).", "Water pollution, including agricultural runoff and mining contaminants."],
+                    currentActions: ["Federally protected as 'Threatened' under the ESA.", "Stream restoration and erosion control projects in the Black Warrior basin.", "Continuous population monitoring and research into captive breeding programs."]
+                },
+                resources: [{ type: "USFWS Profile", title: "Species Profile (Ecos)", url: "https://ecos.fws.gov/ecp/species/6961" }]
+            },
+            "kemps-ridley-sea-turtle": {
+                speciesName: "Kemp's Ridley Sea Turtle",
+                scientificName: "Lepidochelys kempii",
+                status: "Endangered (Critically Endangered Globally)",
+                generalImage: "https://placehold.co/600x400/1e40af/ffffff?text=Kemp's+Ridley",
+                description: "The smallest and most critically endangered sea turtle in the world, the Kemp's Ridley is an occasional, **precious visitor** to Alabama's Gulf Coast. While they famously nest in synchronized 'arribadas' mainly in Mexico, our shallow, nutrient-rich bay waters are **vital feeding grounds** for their vulnerable juveniles. They represent a high-stakes global conservation effort.",
+                habitat: {
+                    title: "Shallow Coastal (Neritic) Waters and Estuaries",
+                    details: "Adults occupy nearshore coastal habitats in the Gulf with muddy or sandy bottoms. Juveniles heavily use bay waters and estuaries along the Gulf Coast, like Mobile Bay, where they forage primarily for **blue crabs**.",
+                    location: "Occasional visitors to Alabama's coastal and bay waters (Gulf Shores, Dauphin Island). Extremely rare, but documented, nesting occurs on Alabama beaches."
+                },
+                movement: {
+                    locomotion: "Highly migratory. Females emerge onto beaches during the day in large synchronized nesting events (arribadas). Uses large, paddle-like front flippers for powerful propulsion on land and sea.",
+                    footprintDescription: "A very large, wide, **symmetrical track** (up to 2.5 feet wide) on sandy beaches. The front flippers push simultaneously, leaving **two distinct, parallel drag marks** (like train tracks) on either side of a deep central body/tail drag pit.",
+                    wildtrackPotential: "High potential for identifying and monitoring rare nesting activity on Alabama beaches. AI could be trained to recognize the distinct, **symmetrical** flipper patterns and size of the tracks, differentiating them instantly from other species like the Loggerhead."
+                },
+                conservation: {
+                    mainThreats: ["**Bycatch in shrimp trawling and fishing gear (primary threat).**", "Loss and degradation of nesting beaches due to coastal development.", "Vessel strikes, oil spills, and ocean plastic pollution."],
+                    currentActions: ["Mandatory use of **Turtle Excluder Devices (TEDs)** in fishing gear.", "International protection of primary nesting beaches in Mexico.", "Habitat protection in coastal areas like Bon Secour National Wildlife Refuge (NWR)."]
+                },
+                resources: [{ type: "NOAA Fisheries", title: "Kemp's Ridley Species Profile", url: "https://www.fisheries.noaa.gov/species/kemps-ridley-turtle" }]
+            },
+            "loggerhead-sea-turtle": {
+                speciesName: "Loggerhead Sea Turtle",
+                scientificName: "Caretta caretta",
+                status: "Threatened (Northwest Atlantic DPS)",
+                generalImage: "https://placehold.co/600x400/92400e/ffffff?text=Loggerhead+Turtle",
+                description: "A true **giant of the Gulf**, named for its massive head and powerful jaw, the Loggerhead is the most common sea turtle to grace Alabama's nesting beaches. These majestic mariners migrate across oceans but return faithfully to the sands of Fort Morgan and Gulf Shores, making them a cornerstone of Alabama's coastal ecosystem and conservation efforts.",
+                habitat: {
+                    title: "Open Ocean, Continental Shelf, and Coastal Nesting Beaches",
+                    details: "Associated with waters along the continental shelf. Juveniles and adults are found in coastal waters, bays, and estuaries. Nesting requires sandy, high-energy beaches, backed by dunes or dense vegetation, but they are tolerant of a wider range of habitats than other sea turtles.",
+                    location: "Coastal waters and nesting beaches in the southern part of the state, primarily between **Fort Morgan and Gulf Shores**. They are the only turtle that regularly nests here."
+                },
+                movement: {
+                    locomotion: "Highly migratory, covering thousands of miles. Females emerge onto beaches at night to lay clutches of eggs, using large front flippers to drag their heavy bodies.",
+                    footprintDescription: "Very large tracks (up to 3 feet wide) on sandy beaches, characterized by an **alternating flipper pattern**. The flipper marks criss-cross or zig-zag, rather than running parallel. There is a deep, large central body drag (plastron) mark.",
+                    wildtrackPotential: "Highly valuable. AI-based tracking could easily differentiate the Loggerhead's **alternating** flipper marks from the Kemp's Ridley's symmetrical marks. This rapid identification is crucial for quickly deploying conservation teams to cage and protect the nest from predators."
+                },
+                conservation: {
+                    mainThreats: ["Loss and degradation of nesting habitat from coastal development and **light pollution**.", "Incidental capture (bycatch) in fishing gear, though less severe than for Kemp's Ridley.", "Predation of eggs by raccoons and feral hogs."],
+                    currentActions: ["Implementation of beachfront lighting ordinances to prevent hatchling disorientation.", "Extensive nest monitoring and protection programs (cages placed over nests).", "Ongoing enforcement of TEDs in commercial fisheries."]
+                },
+                resources: [{ type: "NOAA Fisheries", title: "Loggerhead Species Profile", url: "https://www.fisheries.noaa.gov/species/loggerhead-turtle" }]
+            },
+            "gopher-tortoise": {
+                speciesName: "Gopher Tortoise",
+                scientificName: "Gopherus polyphemus",
+                status: "Threatened (Western Alabama DPS)",
+                generalImage: "https://placehold.co/600x400/55a024/000000?text=Gopher+Tortoise",
+                description: "The **Gopher Tortoise** is an engineering marvel and the 'landlord' of the Longleaf Pine ecosystem. This terrestrial tortoise excavates massive burrows—tunnels often 40 feet deep—that become essential shelters and thermal refuges for over 350 other species. Its deep tracks in the sand are the signature of a **keystone species** whose fate is tied to the management of Alabama's ancient pine forests.",
+                habitat: {
+                    title: "Dry, Sandy Upland Longleaf Pine Forests",
+                    details: "Requires dry, deep sandy soils where the overhead canopy is **open**, allowing ample sunlight to reach the forest floor for foraging and nesting. Optimal habitat is the Longleaf Pine-scrub oak-wiregrass sand hills that are frequently maintained by fire.",
+                    location: "Populations are found in the Coastal Plain counties of Alabama. The federally threatened Distinct Population Segment (DPS) is found **west of the Mobile and Tombigbee Rivers** (Mobile, Washington, and Choctaw counties)."
+                },
+                movement: {
+                    locomotion: "Slow, deliberate terrestrial movement. Primarily active during the day, rarely straying far from their large, protective burrows, which they rely on for temperature regulation.",
+                    footprintDescription: "Deep, heavy, and wide footprints showing five short, stout, non-webbed toes with strong claws, adapted for digging. The print often shows a light but distinctive drag mark from the plastron (undershell) or tail. Tracks lead directly to or away from burrow entrances (**aprons**).",
+                    wildtrackPotential: "Excellent potential. Since tracks are frequent and deep near their burrows in sandy soil, Wildtrack could be used effectively to perform non-invasive surveys. It could estimate population density and track the overall health of tortoise colonies simply by photographing the burrow entrances and the apron tracks."
+                },
+                conservation: {
+                    mainThreats: ["Habitat loss and fragmentation due to urbanization and development.", "**Suppression of natural fires**, leading to canopy closure which kills off necessary ground cover.", "Road mortality and illegal collection."],
+                    currentActions: ["Aggressive habitat restoration of Longleaf Pine ecosystems (including prescribed burning).", "Relocation of tortoises from development sites to protected conservation banks.", "Protection of burrows under state and federal law."]
+                },
+                resources: [{ type: "USFWS Profile", title: "Gopher Tortoise Project", url: "https://www.fws.gov/project/gopher-tortoise" }]
+            },
+            "alabama-red-bellied-turtle": {
+                speciesName: "Alabama Red-bellied Turtle",
+                scientificName: "Pseudemys alabamensis",
+                status: "Endangered (Alabama State Reptile)",
+                generalImage: "https://placehold.co/600x400/b91c1c/ffffff?text=Alabama+Red-bellied+Turtle",
+                description: "Alabama's official state reptile, this striking freshwater turtle is confined almost exclusively to the **Mobile-Tensaw River Delta**. Characterized by its dark, high shell and vibrant, sometimes reddish, plastron (undershell), it is a strict vegetarian. Its restricted home range makes it incredibly vulnerable to localized threats like road traffic and habitat changes in the Delta.",
+                habitat: {
+                    title: "Shallow, Vegetated Backwaters and Delta Marshes",
+                    details: "Found in shallow, slow-moving freshwater streams, rivers, bays, and bayous. They prefer habitats with soft bottoms and extensive beds of **submergent aquatic plants** (macrophytes) for both food and cover.",
+                    location: "Highly restricted to the **Mobile-Tensaw River Delta** in Mobile and Baldwin counties adjacent to Mobile Bay. Its range is one of the smallest of any freshwater turtle."
+                },
+                movement: {
+                    locomotion: "Highly aquatic, spending most time foraging or basking on logs. Females leave the water to nest, often utilizing sandy banks, levees, or dredge spoil sites, exposing them to terrestrial dangers.",
+                    footprintDescription: "Small to medium track left by semi-aquatic movement near nesting sites. Tracks would show five clawed toes on the front feet (with light webbing marks) and four on the back, often with a slight drag from the shell. The prints are typically clearer and smaller than those left by sea turtles.",
+                    wildtrackPotential: "Limited, but important for **nesting surveys**. AI could help differentiate their tracks from other common, closely-related cooters and sliders in the Delta. This is crucial for protecting the species' few viable nesting locations, especially along the Mobile Causeway, where road mortality is high.",
+                },
+                conservation: {
+                    mainThreats: ["High rate of **road mortality** (females crossing the Mobile Causeway is a major killer).", "Hybridization with other cooter species due to habitat encroachment.", "Habitat loss and degradation, especially of nesting sites.", "Illegal trapping and collection for the pet trade."],
+                    currentActions: ["Construction of fencing along the Mobile Bay Causeway (US 90/98) to funnel turtles and reduce road mortality.", "Protection of key nesting areas (e.g., Gravine Island).", "Revision of the USFWS recovery plan for the species."]
+                },
+                resources: [{ type: "Outdoor Alabama", title: "Alabama Red-bellied Turtle Profile", url: "https://www.outdooralabama.com/turtles/alabama-red-bellied-turtle" }]
+            }
+        };
+
+        let activeSpecies = "flattened-musk-turtle";
+
+        function updateTheme(speciesKey) {
+            const theme = themeMap[speciesKey];
+            if (!theme) return;
+
+            // Update main header and box shadow
+            document.getElementById('header-section').className = `theme-header p-6 ${theme.header} text-white rounded-t-xl shadow-2xl`;
+            
+            // Update status badge color
+            document.getElementById('status').className = `text-sm font-bold text-white inline-block px-4 py-1 rounded-full shadow-lg ${theme.statusBg}`; // White text on dark status color
+
+            // Update sidebar and border
+            document.getElementById('sidebar-nav').className = `p-4 md:p-6 ${theme.lightBg} border-r ${theme.lightBorder} md:col-span-1`;
+            document.getElementById('sidebar-heading').className = `text-xl font-bold ${theme.accentText} mb-4 border-b pb-2 ${theme.lightBorder}`;
+
+            // Update content section titles and callouts
+            document.querySelectorAll('.theme-accent-text').forEach(el => {
+                // Remove all previous theme classes
+                Object.values(themeMap).forEach(t => el.classList.remove(t.accentText));
+                el.classList.add(theme.accentText);
+            });
+            
+            document.querySelectorAll('.theme-callout').forEach(el => {
+                // Remove all previous theme classes
+                Object.values(themeMap).forEach(t => {
+                    el.classList.remove(t.lightBg, t.lightBorder);
+                });
+                el.classList.add(theme.lightBg, theme.lightBorder);
+            });
+            
+            // Re-apply the active tab style to ensure the color is correct
+            showTab(document.querySelector('#species-detail-view .active-tab')?.getAttribute('data-tab') || 'overview');
+        }
+
+
+        // Function to display the active tab content
+        function showTab(tabName) {
+            const theme = themeMap[activeSpecies];
+
+            // Hide all content sections
+            document.querySelectorAll('[data-content]').forEach(content => {
+                content.classList.add('hidden');
+            });
+
+            // Deactivate all buttons
+            document.querySelectorAll('#sidebar-nav [data-tab]').forEach(button => {
+                button.classList.remove('active-tab', theme.accentBg, 'shadow-lg');
+                // Updated inactive button styles for light mode
+                button.classList.add('bg-white', 'hover:bg-gray-100', 'text-gray-700', 'shadow-md');
+            });
+
+            // Show the selected content section
+            const activeContent = document.getElementById(tabName);
+            if (activeContent) {
+                activeContent.classList.remove('hidden');
+            }
+
+            // Activate the corresponding button
+            const activeButton = document.querySelector(`#sidebar-nav [data-tab='${tabName}']`);
+            if (activeButton) {
+                // The active button uses a bright accent color and forces white text
+                activeButton.classList.add('active-tab', theme.accentBg, 'shadow-lg');
+                activeButton.classList.remove('bg-white', 'hover:bg-gray-100', 'text-gray-700', 'shadow-md');
+            }
+        }
+
+        // Helper function to create list items (for conservation data)
+        function createList(items, parentElementId) {
+            const list = document.getElementById(parentElementId);
+            list.innerHTML = '';
+            items.forEach(item => {
+                const li = document.createElement('li');
+                li.className = 'mb-2 text-gray-700'; // Dark text for list items
+                li.innerHTML = item;
+                list.appendChild(li);
+            });
+        }
+        
+        // --- Navigation Functions ---
+
+        function showDashboard() {
+            document.getElementById('main-dashboard').classList.remove('hidden');
+            document.getElementById('species-detail-view').classList.add('hidden');
+        }
+
+        // Main function to load data for the selected species and switch views
+        function showSpecies(speciesKey) {
+            activeSpecies = speciesKey;
+            const data = allSpeciesData[speciesKey];
+            
+            // 0. Switch view
+            document.getElementById('main-dashboard').classList.add('hidden');
+            document.getElementById('species-detail-view').classList.remove('hidden');
+
+            // 1. Update Theme Colors (before content)
+            updateTheme(speciesKey);
+
+            // 2. Header and Overview
+            document.getElementById('species-name').textContent = data.speciesName;
+            document.getElementById('scientific-name').textContent = `:: ${data.scientificName} ::`; 
+            document.getElementById('status').textContent = data.status;
+            document.getElementById('general-image').src = data.generalImage;
+            document.getElementById('general-image-caption').textContent = `PHOTO RECORD: ${data.speciesName}`;
+            document.getElementById('overview-description').innerHTML = data.description;
+            
+            // 3. Habitat & Location
+            document.getElementById('habitat-title').textContent = data.habitat.title;
+            document.getElementById('habitat-details').textContent = data.habitat.details;
+            document.getElementById('location-details').textContent = data.habitat.location;
+            
+            // 4. Movement & Tracking
+            document.getElementById('movement-locomotion').textContent = data.movement.locomotion;
+            document.getElementById('footprint-description').innerHTML = data.movement.footprintDescription;
+            document.getElementById('wildtrack-reflection').textContent = data.movement.wildtrackPotential;
+            
+            // 5. Conservation
+            createList(data.conservation.mainThreats, 'threats-list');
+            createList(data.conservation.currentActions, 'current-actions-list');
+
+            // 6. Resources (simplified)
+            const resourcesList = document.getElementById('resources-list');
+            resourcesList.innerHTML = ''; 
+            data.resources.forEach(res => {
+                const li = document.createElement('li');
+                li.className = 'mb-2';
+                const link = document.createElement('a');
+                link.href = res.url;
+                link.target = "_blank";
+                link.className = 'theme-accent-text hover:underline font-semibold';
+                link.textContent = `[${res.type}] ${res.title} >>`; 
+                li.appendChild(link);
+                resourcesList.appendChild(li);
+            });
+
+            // Reset to the Overview tab when switching species
+            showTab('overview');
+        }
+
+        // Initialize content and species selector on load
+        window.onload = function() {
+            const dashboardContainer = document.getElementById('dashboard-cards');
+            
+            // Populate Dashboard Cards
+            for (const key in allSpeciesData) {
+                const data = allSpeciesData[key];
+                const theme = themeMap[key];
+                
+                const card = document.createElement('div');
+                card.className = `cursor-pointer rounded-xl shadow-lg hover:shadow-2xl hover:scale-[1.02] transition duration-300 transform p-6 ${theme.lightBg} border-b-4 ${theme.accentBorder} shadow-xl ${theme.cardShadow}`;
+                card.setAttribute('onclick', `showSpecies('${key}')`);
+                card.innerHTML = `
+                    <div class="flex items-center space-x-4">
+                        <img src="${data.generalImage}" onerror="this.src='https://placehold.co/100x100/94a3b8/ffffff?text=🐢';" class="w-16 h-16 object-cover rounded-lg ring-2 ring-gray-300">
+                        <div>
+                            <h3 class="text-xl font-bold ${theme.accentText} mb-1">${data.speciesName}</h3>
+                            <p class="text-xs text-gray-500 italic">${data.scientificName}</p>
+                        </div>
+                    </div>
+                    <p class="text-sm mt-4 text-gray-600">${data.description.substring(0, 120)}...</p>
+                    <div class="mt-4 flex justify-end">
+                        <span class="text-xs font-bold text-white px-3 py-1 rounded-full ${theme.statusBg} shadow-md">${data.status}</span>
+                    </div>
+                `;
+                dashboardContainer.appendChild(card);
+            }
+            
+            // Start on the dashboard
+            showDashboard();
+        };
+    </script>
+</head>
+<body class="p-4 md:p-10 min-h-screen">
+
+    <!-- Main Application Container (Light Stone Theme) -->
+    <div class="max-w-6xl mx-auto bg-white shadow-2xl rounded-2xl overflow-hidden ring-4 ring-gray-200">
+
+        <!-- DASHBOARD VIEW (HOME PAGE) -->
+        <section id="main-dashboard" class="p-8 md:p-12">
+            <header class="text-center mb-10 pb-4 border-b-2 border-emerald-300">
+                <h1 class="text-5xl font-extrabold text-emerald-700 mb-2 tracking-tighter">ALABAMA TURTLE INDEX</h1>
+                <p class="text-xl text-gray-600 font-light">Explore the five protected turtle and tortoise species of Alabama.</p>
+                <p class="text-sm text-gray-500 mt-2 italic">Click any species card below to view the full conservation dossier.</p>
+            </header>
+
+            <!-- Grid for Species Cards -->
+            <div id="dashboard-cards" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Cards populated by JS -->
+            </div>
+        </section>
+
+
+        <!-- SPECIES DETAIL VIEW (Was the entire previous app content) -->
+        <section id="species-detail-view" class="hidden">
+            <!-- Header Section (Theme will update the bg color to deep forest green) -->
+            <header id="header-section" class="theme-header p-6 rounded-t-xl text-white">
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                    <div>
+                        <h1 class="text-4xl font-extrabold mb-1 tracking-wider" id="species-name">Species Name Placeholder</h1>
+                        <p class="text-sm italic mt-1 font-mono font-light text-emerald-200" id="scientific-name">:: Scientific Name Placeholder ::</p>
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row items-center gap-3">
+                        <p id="status" class="text-sm font-bold text-white inline-block px-4 py-1 rounded-full shadow-lg">Status Placeholder</p>
+                        <button onclick="showDashboard()" class="bg-white text-emerald-700 font-bold py-2 px-4 rounded-lg shadow-md hover:bg-gray-100 transition duration-150 text-sm">
+                            &larr; Back to Species Index
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Main Content Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-4">
+                
+                <!-- Sidebar / Tabs (Navigation) - Light Accent Background -->
+                <nav id="sidebar-nav" class="p-4 md:p-6 border-r md:col-span-1">
+                    <h2 id="sidebar-heading" class="theme-accent-text text-xl font-bold mb-4 border-b pb-2">DATA FILES</h2>
+                    <div class="flex flex-col space-y-3">
+                        <button data-tab="overview" onclick="showTab('overview')" 
+                            class="tab px-4 py-3 text-left rounded-lg shadow-md transition duration-150 ease-in-out">
+                            <span class="text-sm font-semibold">01. Profile & Description</span>
+                        </button>
+                        <button data-tab="habitat" onclick="showTab('habitat')" 
+                            class="tab px-4 py-3 text-left rounded-lg shadow-md transition duration-150 ease-in-out">
+                            <span class="text-sm font-semibold">02. Habitat Matrix</span>
+                        </button>
+                        <button data-tab="movement" onclick="showTab('movement')" 
+                            class="tab px-4 py-3 text-left rounded-lg shadow-md transition duration-150 ease-in-out">
+                            <span class="text-sm font-semibold">03. Biometric Tracking</span>
+                        </button>
+                        <button data-tab="conservation" onclick="showTab('conservation')" 
+                            class="tab px-4 py-3 text-left rounded-lg shadow-md transition duration-150 ease-in-out">
+                            <span class="text-sm font-semibold">04. Threat Assessment</span>
+                        </button>
+                        <button data-tab="resources" onclick="showTab('resources')" 
+                            class="tab px-4 py-3 text-left rounded-lg shadow-md transition duration-150 ease-in-out">
+                            <span class="text-sm font-semibold">05. External Links</span>
+                        </button>
+                    </div>
+                </nav>
+
+                <!-- Main Content Area -->
+                <div class="p-6 md:p-10 lg:col-span-3">
+
+                    <!-- 1. Overview Tab -->
+                    <section id="overview" data-content>
+                        <h2 class="text-3xl font-bold theme-accent-text mb-6 tracking-wide">SPECIES OVERVIEW: PRIMARY DATA</h2>
+                        <div class="bg-gray-100 p-6 rounded-xl mb-8 border border-gray-300 shadow-lg">
+                            <img id="general-image" class="w-full h-auto rounded-xl shadow-xl object-cover mb-4 ring-2 ring-gray-400" 
+                                src="" alt="Placeholder image of turtle">
+                            <p class="text-sm italic text-center text-gray-500 font-mono" id="general-image-caption"></p>
+                        </div>
+                        
+                        <h3 class="text-2xl font-semibold text-gray-700 mb-3 border-b pb-1">Detailed Description</h3>
+                        <p class="text-gray-700 leading-relaxed text-lg" id="overview-description">Loading description...</p>
+                    </section>
+
+                    <!-- 2. Habitat & Location Tab -->
+                    <section id="habitat" data-content class="hidden">
+                        <h2 class="text-3xl font-bold theme-accent-text mb-6 tracking-wide">HABITAT MATRIX: ENVIRONMENTAL VITAL SIGNS</h2>
+                        
+                        <div class="mb-8 p-6 rounded-xl border theme-callout shadow-md">
+                            <h3 class="text-2xl font-semibold theme-accent-text mb-2" id="habitat-title">Habitat Loading...</h3>
+                            <p class="text-gray-700 leading-relaxed" id="habitat-details">Loading habitat details...</p>
+                        </div>
+
+                        <div>
+                            <h3 class="text-2xl font-semibold text-gray-700 mb-3 border-b pb-1">Location in Alabama: Restricted Range</h3>
+                            <p class="text-gray-700 leading-relaxed" id="location-details">Loading location details...</p>
+                            <p class="mt-4 italic text-sm text-gray-500">:: GEOSPATIAL CONSTRAINT IDENTIFIED ::</p>
+                        </div>
+                    </section>
+
+                    <!-- 3. Movement & Tracking Tab (Footprint Focus) -->
+                    <section id="movement" data-content class="hidden">
+                        <h2 class="text-3xl font-bold theme-accent-text mb-6 tracking-wide">THE SIGN: BIOMETRIC TRACKING ANALYSIS</h2>
+                        
+                        <div class="mb-8 p-6 rounded-xl border theme-callout shadow-md">
+                            <h3 class="text-2xl font-semibold theme-accent-text mb-2">Locomotion & Activity Profile</h3>
+                            <p class="text-gray-700 leading-relaxed" id="movement-locomotion">Loading locomotion details...</p>
+                        </div>
+
+                        <div class="border-t border-gray-300 pt-6">
+                            <h3 class="text-2xl font-semibold text-gray-700 mb-3 border-b pb-1">Footprint Characteristics & Sketch</h3>
+                            <div class="bg-gray-100 p-4 rounded-lg shadow-inner mb-6">
+                                <p class="text-gray-700 italic" id="footprint-description">Loading footprint description...</p>
+                            </div>
+                            <!-- Track Sketch area with updated dark-mode style -->
+                            <div class="track-sketch rounded-xl p-8">
+                                <p class="font-bold text-xl uppercase tracking-widest">
+                                    [[ TRACK DATA SKETCH PLACEHOLDER ]]
+                                    <br><span class="text-base font-normal mt-2 block text-gray-600">(Focus on the unique flipper/toe arrangement and body drag marks in the specified habitat.)</span>
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 4. Threats & Conservation Tab -->
+                    <section id="conservation" data-content class="hidden">
+                        <h2 class="text-3xl font-bold theme-accent-text mb-6 tracking-wide">THREAT ASSESSMENT: SURVIVAL PROTOCOL</h2>
+                        
+                        <div class="mb-8">
+                            <h3 class="text-2xl font-semibold text-red-600 mb-3">Critical Threats (Threat Level: High)</h3>
+                            <ul id="threats-list" class="list-disc pl-5 space-y-2 text-gray-700">
+                                <!-- Threats populated by JS -->
+                            </ul>
+                        </div>
+
+                        <div class="mb-8 p-6 rounded-xl border theme-callout shadow-md">
+                            <h3 class="text-2xl font-semibold theme-accent-text mb-3">Wildtrack Tool Potential: Predictive Analysis</h3>
+                            <p class="text-gray-700 italic leading-relaxed" id="wildtrack-reflection">Loading Wildtrack potential reflection...</p>
+                            <p class="mt-4 text-sm text-gray-500">
+                                The Wildtrack system utilizes AI to identify species from tracks alone. Its success depends entirely on clear, distinctive prints being left in the substrate.
+                            </p>
+                        </div>
+
+                        <div>
+                            <h3 class="text-2xl font-semibold text-gray-700 mb-3 border-b pb-1">Current Actions & Recovery Efforts</h3>
+                            <ul id="current-actions-list" class="list-disc pl-5 space-y-2 text-gray-700">
+                                 <!-- Actions populated by JS -->
+                            </ul>
+                        </div>
+                    </section>
+
+                    <!-- 5. Resources Tab -->
+                    <section id="resources" data-content class="hidden">
+                        <h2 class="text-3xl font-bold theme-accent-text mb-6 tracking-wide">EXTERNAL LINKS: DATA SOURCE LOG</h2>
+                        <ul id="resources-list" class="list-disc pl-5 space-y-3">
+                            <!-- Resources will be dynamically populated by JavaScript -->
+                        </ul>
+                        <p class="mt-6 text-sm italic text-gray-500">
+                            :: END OF DATA TRANSMISSION ::
+                        </p>
+                    </section>
+
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+
+</body>
+</html>
 
